@@ -1,0 +1,76 @@
+@mixin marcoImageBox {
+  height: 60vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @media (min-width: 900px) {
+    height: 80vh;
+    background-position: right;
+  }
+}
+
+@keyframes translatePictureAnimation {
+  from {
+    translate: -500px;
+  }
+  to {
+    translate: 0;
+  }
+}
+
+.marcoImageBoxLight {
+  @include marcoImageBox;
+  background-image: url(../../public/images/MarcoLight.png);
+
+  animation: translatePictureAnimation 2s;
+}
+
+.marcoImageBoxDark {
+  @include marcoImageBox;
+  background-image: url(../../public/images/MarcoDark.png);
+
+  animation: translatePictureAnimation 2s;
+}
+
+$breakpoints: (0px, 600px, 900px, 1200px, 1536px);
+
+@mixin responsiveMarcoTextSize($fontSize) {
+  @each $breakpoint in $breakpoints {
+    @media (min-width: #{$breakpoint}) {
+      $index: index($breakpoints, $breakpoint);
+      //width: calc(90vw - #{$index - 1} * 10vw);
+      font-size: nth($fontSize, $index);
+
+      @if nth($breakpoints, $index) < 900px {
+        margin-left: 0;
+      } @else {
+        margin-left: -60px;
+      }
+    }
+  }
+}
+
+@keyframes translateTextAnimation {
+  from {
+    translate: 500px;
+  }
+  to {
+    translate: 0;
+  }
+}
+
+$fontSizeMarcoBig: (25px, 35px, 45px, 55px, 65px);
+.marcoTextBox {
+  margin-bottom: 2vh;
+  @include responsiveMarcoTextSize($fontSizeMarcoBig);
+
+  animation: translateTextAnimation 2s;
+}
+
+$fontSizeMarcoSmall: (15px, 25px, 30px, 35px, 40px);
+.marcoTextBoxSmall {
+  @include responsiveMarcoTextSize($fontSizeMarcoSmall);
+
+  animation: translateTextAnimation 2s;
+}

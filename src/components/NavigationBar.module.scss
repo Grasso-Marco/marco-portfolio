@@ -1,0 +1,44 @@
+.link {
+  text-decoration: none;
+  color: white;
+  margin-right: 1vw;
+  &:hover {
+    color: yellow;
+  }
+}
+
+.languageButton {
+  color: white;
+  text-transform: none;
+}
+
+@mixin contactButton {
+  text-decoration: none;
+  color: white;
+  padding: 10px 5px;
+  margin-right: 3vw;
+}
+
+.contactButtonDark {
+  @include contactButton;
+  background: radial-gradient(rgb(80, 30, 240), rgb(40,15,120));
+  border: 1px solid rgb(80, 30, 240);
+  box-shadow: rgb(80, 30, 240);
+
+  &:hover {
+    background: radial-gradient(rgb(70, 20, 230), rgb(30,5,110));
+    border: 1px solid rgb(70, 20, 230);
+    box-shadow: rgb(70, 20, 230);
+  }
+}
+
+.contactButtonLight {
+  @include contactButton;
+  background: radial-gradient(rgb(70, 20, 230), rgb(30,5,110));
+  border: 1px solid white;
+  box-shadow: white;
+
+  &:hover {
+    background: radial-gradient(#3f51b5, rgb(30,5,110));
+  }
+}
