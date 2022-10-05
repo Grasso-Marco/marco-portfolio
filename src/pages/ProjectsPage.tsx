@@ -11,7 +11,7 @@ export default function ProjectsPage() {
     const {t, i18n} = useTranslation(["projects"]);
     const navigate = useNavigate();
 
-    const [buttonNavValue, setButtonNavValue] = useState<number>(0);
+    const [buttonNavValue, setButtonNavValue] = useState<number>(1);
 
     const [videoModal, setVideoModal] = React.useState<boolean>(false);
     const [currentVideo, setCurrentVideo] = React.useState<string>(process.env.PUBLIC_URL + "/videos/Destruction4Dummies.mp4");
@@ -25,7 +25,8 @@ export default function ProjectsPage() {
             technologyStack: ["HTML5", "SCSS", "Typescript", "React", "MaterialUI"],
             projectCardAction: () => {
                 navigate("/");
-            }
+            },
+            gitHub: "https://github.com/Grasso-Marco/marco-portfolio.git"
         },
         {
             title: t("TodoList"),
@@ -108,47 +109,92 @@ export default function ProjectsPage() {
         }
     ];
 
-    const switchProjectData = (navValue: number) => {
-        let projectData: ProjectCardProps[];
-        switch(navValue) {
-            case 0:
-                projectData = personalProjectData;
-                break;
-            case 1:
-                projectData = groupProjectData;
-                break;
-            default:
-                projectData = personalProjectData;
-                break;
+    const oldProjects = [
+        {
+            title: "Defenders of Earth",
+            image: "projects/DefendersOfEarth.png",
+            date: DateTime.local(2018, 8, 16).setLocale(i18n.language),
+            content: t("DefendersOfEarth"),
+            technologyStack: ["Unity", "C#"],
+            projectCardAction: () => {
+                setCurrentVideo(process.env.PUBLIC_URL + "/videos/DefendersOfEarth.mp4");
+                setVideoModal(true);
+            },
+            video: () => {
+                setCurrentVideo(process.env.PUBLIC_URL + "/videos/DefendersOfEarth.mp4");
+                setVideoModal(true);
+            }
+        },
+        {
+            title: "Global Galaxy",
+            image: "projects/GlobalGalaxy.png",
+            date: DateTime.local(2016, 1, 24).setLocale(i18n.language),
+            content: t("GlobalGalaxy"),
+            technologyStack: ["Unity", "C#"],
+            projectCardAction: () => {
+                setCurrentVideo(process.env.PUBLIC_URL + "/videos/GlobalGalaxy.mp4");
+                setVideoModal(true);
+            },
+            video: () => {
+                setCurrentVideo(process.env.PUBLIC_URL + "/videos/GlobalGalaxy.mp4");
+                setVideoModal(true);
+            }
         }
+    ];
 
-        return <>
-            {projectData.map((project, index) => (
-                <Grid key={index} item xs={8} sm={8} md={8} lg={4} xl={4}>
-                    <ProjectCard
-                        key={index}
-                        title={project.title}
-                        image={project.image}
-                        date={project.date}
-                        content={project.content}
-                        technologyStack={project.technologyStack}
-                        projectCardAction={project.projectCardAction}
-                        video={project.video}
-                        gitHub={project.gitHub}
-                        youtube={project.youtube}
-                        liveDemo={project.liveDemo}
-                        pdf={project.pdf}
-                        download={project.download}
-                    />
-                </Grid>
-            ))}
-        </>;
+
+    const switchProjectData = (navValue: number) => {
+        switch (navValue) {
+            case 0:
+                return personalProjectData;
+            case 1:
+                return groupProjectData;
+            default:
+                return personalProjectData;
+        }
     }
 
-    return (
-        <PageContentBoxMinHeight sx={{
-            paddingTop: "2vh"
+    const projectCards = (projectData: ProjectCardProps[]) => (
+        <Box sx={{
+            paddingTop: "2vh",
+            paddingBottom: "2vh",
+            display: {lg: "flex"},
+            justifyContent: {lg: "center"},
+            alignItems: {lg: "center"}
         }}>
+            <Grid container
+                  columns={{xs: 10, sm: 18, md: 18, lg: 18, xl: 18}}
+                  direction="row"
+                  columnSpacing={{xs: 2, md: 3}}
+                  rowSpacing={{xs: 3, lg: 2}}
+                  justifyContent="center"
+                  alignItems="stretch"
+            >
+                {projectData.map((project, index) => (
+                    <Grid key={index} item xs={8} sm={8} md={8} lg={4} xl={4}>
+                        <ProjectCard
+                            key={index}
+                            title={project.title}
+                            image={project.image}
+                            date={project.date}
+                            content={project.content}
+                            technologyStack={project.technologyStack}
+                            projectCardAction={project.projectCardAction}
+                            video={project.video}
+                            gitHub={project.gitHub}
+                            youtube={project.youtube}
+                            liveDemo={project.liveDemo}
+                            pdf={project.pdf}
+                            download={project.download}
+                        />
+                    </Grid>
+                ))}
+            </Grid>
+        </Box>
+    );
+
+    const privateGroupSwitch =
+        <>
             <BottomNavigation
                 showLabels
                 value={buttonNavValue}
@@ -156,8 +202,10 @@ export default function ProjectsPage() {
                     setButtonNavValue(newValue);
                 }}
             >
-                <BottomNavigationAction label={t("PersonalProjects")} icon={<PersonIcon/>}  sx={{borderBottom: "1px solid"}}/>
-                <BottomNavigationAction label={t("GroupProjects")} icon={<GroupIcon/>}  sx={{borderBottom: "1px solid"}}/>
+                <BottomNavigationAction label={t("PersonalProjects")} icon={<PersonIcon/>}
+                                        sx={{borderBottom: "1px solid"}}/>
+                <BottomNavigationAction label={t("GroupProjects")} icon={<GroupIcon/>}
+                                        sx={{borderBottom: "1px solid"}}/>
             </BottomNavigation>
             <Box sx={{
                 display: {lg: "flex"},
@@ -166,48 +214,42 @@ export default function ProjectsPage() {
             }}>
                 {t("freeTier")}
             </Box>
+        </>;
+
+    const videoBox =
+        <Modal
+            open={videoModal}
+            onClose={() => setVideoModal(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+            }}
+        >
             <Box sx={{
-                paddingTop: "2vh",
-                display: {lg: "flex"},
-                justifyContent: {lg: "center"},
-                alignItems: {lg: "center"}
+                width: "50%",
+                height: {xs: "25vh", md: "50vh"},
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                border: "solid 2px white"
             }}>
-                <Grid container
-                      columns={{xs: 10, sm: 18, md: 18, lg: 18, xl: 18}}
-                      direction="row"
-                      columnSpacing={{xs: 2, md: 3}}
-                      rowSpacing={{xs: 3, lg: 0}}
-                      justifyContent="center"
-                      alignItems="stretch"
-                >
-                    {switchProjectData(buttonNavValue)}
-                </Grid>
-                <Box sx={{height: "2vh"}}/>
-                <Modal
-                    open={videoModal}
-                    onClose={() => setVideoModal(false)}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    sx={{
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
-                    }}
-                >
-                    <Box sx={{
-                        width: "50%",
-                        height: {xs: "25vh", md: "50vh"},
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        border: "solid 2px white"
-                    }}>
-                        <video width="100%" height="100%" controls>
-                            <source src={currentVideo} type="video/mp4"/>
-                            Your browser does not support the video tag.
-                        </video>
-                    </Box>
-                </Modal>
+                <video width="100%" height="100%" controls>
+                    <source src={currentVideo} type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
             </Box>
-        </PageContentBoxMinHeight>
+        </Modal>;
+
+    return (
+        <>
+            <PageContentBoxMinHeight>
+                {privateGroupSwitch}
+                {projectCards(switchProjectData(buttonNavValue))}
+                {videoBox}
+            </PageContentBoxMinHeight>
+            {buttonNavValue === 1 ? projectCards(oldProjects) : <></>}
+        </>
     );
 }
