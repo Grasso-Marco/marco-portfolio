@@ -5,46 +5,30 @@ import {useTranslation} from "react-i18next";
 import {PageContentBoxMinHeight} from "../components/PageContentBox";
 import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
-import {Person as PersonIcon, Groups as GroupIcon} from "@mui/icons-material";
+import {VideogameAsset as VideoGameIcon, Web as WebIcon} from "@mui/icons-material";
 
 export default function ProjectsPage() {
     const {t, i18n} = useTranslation(["projects"]);
     const navigate = useNavigate();
 
-    const [buttonNavValue, setButtonNavValue] = useState<number>(1);
+    const [buttonNavValue, setButtonNavValue] = useState<number>(0);
 
     const [videoModal, setVideoModal] = React.useState<boolean>(false);
     const [currentVideo, setCurrentVideo] = React.useState<string>(process.env.PUBLIC_URL + "/videos/Destruction4Dummies.mp4");
 
-    const personalProjectData: ProjectCardProps[] = [
+    const gameProjectData: ProjectCardProps[] = [
         {
-            title: t("ThisPortfolio"),
-            image: "projects/MarcoPortfolioScreenshot.png",
-            date: DateTime.local(2022, 9, 15).setLocale(i18n.language),
-            content: t("MyWebsite"),
-            technologyStack: ["HTML5", "SCSS", "Typescript", "React", "MaterialUI"],
+            title: "Rhythm Dungeon",
+            image: "projects/RhythmDungeon.png",
+            date: DateTime.local(2018, 7, 15).setLocale(i18n.language),
+            content: t("RhythmDungeon"),
+            technologyStack: ["Unity", "C#"],
             projectCardAction: () => {
-                navigate("/");
+                window.open("https://www.youtube.com/watch?v=m5GFUEb_Ots", '_blank');
             },
-            gitHub: "https://github.com/Grasso-Marco/marco-portfolio.git"
+            gitHub: "https://github.com/MarcoTUM/RhythmDungeon",
+            youtube: "https://www.youtube.com/watch?v=m5GFUEb_Ots"
         },
-        {
-            title: t("TodoList"),
-            image: "projects/TodoList.png",
-            date: DateTime.local(2022, 9, 18).setLocale(i18n.language),
-            content: t("TodoListContent"),
-            technologyStack: ["HTML5", "SCSS", "Typescript", "React", "MaterialUI", "NodeJS", "Express", "MongoDB"],
-            projectCardAction: () => {
-                window.open("https://y-0-y-o.github.io/todo-react-frontend/", "_blank");
-            },
-            liveDemo: "https://y-0-y-o.github.io/todo-react-frontend/",
-            gitHub: {
-                frontend: "https://github.com/MarcoTUM/todo-react-frontend",
-                backend: "https://github.com/MarcoTUM/TodoExpressBackend"
-            }
-        }
-    ];
-    const groupProjectData: ProjectCardProps[] = [
         {
             title: "Destruction 4 Dummies",
             image: "projects/D4D.png",
@@ -62,33 +46,6 @@ export default function ProjectsPage() {
             gitHub: "https://github.com/MarcoTUM/Destruction4Dummies",
             pdf: {title: "Game design document", path: "Destruction4Dummies.pdf"},
             download: {title: "Download", path: "Destruction4Dummies.zip"}
-        },
-        {
-            title: "Rhythm Dungeon",
-            image: "projects/RhythmDungeon.png",
-            date: DateTime.local(2018, 7, 15).setLocale(i18n.language),
-            content: t("RhythmDungeon"),
-            technologyStack: ["Unity", "C#"],
-            projectCardAction: () => {
-                window.open("https://www.youtube.com/watch?v=m5GFUEb_Ots", '_blank');
-            },
-            gitHub: "https://github.com/MarcoTUM/RhythmDungeon",
-            youtube: "https://www.youtube.com/watch?v=m5GFUEb_Ots"
-        },
-        {
-            title: "Groceryou",
-            image: "projects/Groceryou.png",
-            date: DateTime.local(2020, 7, 19).setLocale(i18n.language),
-            content: t("Groceryou"),
-            technologyStack: ["HTML5", "CSS3", "Javascript", "React", "Redux", "NodeJS", "Express"],
-            projectCardAction: () => {
-                window.open(process.env.PUBLIC_URL + "/pdf/Groceryou.pdf", '_blank');
-            },
-            gitHub: {
-                frontend: "https://github.com/MarcoTUM/Groceryou_Frontend",
-                backend: "https://github.com/MarcoTUM/Groceryou_Backend"
-            },
-            pdf: {title: "Screenshots", path: "Groceryou.pdf"}
         },
         {
             title: "Soaper Duck",
@@ -109,50 +66,30 @@ export default function ProjectsPage() {
         }
     ];
 
-    const oldProjects = [
+    const webProjectData: ProjectCardProps[] = [
         {
-            title: "Defenders of Earth",
-            image: "projects/DefendersOfEarth.png",
-            date: DateTime.local(2018, 8, 16).setLocale(i18n.language),
-            content: t("DefendersOfEarth"),
-            technologyStack: ["Unity", "C#"],
+            title: t("ThisPortfolio"),
+            image: "projects/MarcoPortfolioScreenshot.png",
+            date: DateTime.local(2022, 9, 15).setLocale(i18n.language),
+            content: t("MyWebsite"),
+            technologyStack: ["HTML5", "SCSS", "Typescript", "React", "MaterialUI"],
             projectCardAction: () => {
-                setCurrentVideo(process.env.PUBLIC_URL + "/videos/DefendersOfEarth.mp4");
-                setVideoModal(true);
+                navigate("/");
             },
-            video: () => {
-                setCurrentVideo(process.env.PUBLIC_URL + "/videos/DefendersOfEarth.mp4");
-                setVideoModal(true);
-            }
-        },
-        {
-            title: "Global Galaxy",
-            image: "projects/GlobalGalaxy.png",
-            date: DateTime.local(2016, 1, 24).setLocale(i18n.language),
-            content: t("GlobalGalaxy"),
-            technologyStack: ["Unity", "C#"],
-            projectCardAction: () => {
-                setCurrentVideo(process.env.PUBLIC_URL + "/videos/GlobalGalaxy.mp4");
-                setVideoModal(true);
-            },
-            video: () => {
-                setCurrentVideo(process.env.PUBLIC_URL + "/videos/GlobalGalaxy.mp4");
-                setVideoModal(true);
-            }
+            gitHub: "https://github.com/Grasso-Marco/marco-portfolio.git"
         }
     ];
-
 
     const switchProjectData = (navValue: number) => {
         switch (navValue) {
             case 0:
-                return personalProjectData;
+                return gameProjectData;
             case 1:
-                return groupProjectData;
+                return webProjectData;
             default:
-                return personalProjectData;
+                return gameProjectData;
         }
-    }
+    };
 
     const projectCards = (projectData: ProjectCardProps[]) => (
         <Box sx={{
@@ -193,7 +130,7 @@ export default function ProjectsPage() {
         </Box>
     );
 
-    const privateGroupSwitch =
+    const gameWebSwitch =
         <>
             <BottomNavigation
                 showLabels
@@ -202,9 +139,9 @@ export default function ProjectsPage() {
                     setButtonNavValue(newValue);
                 }}
             >
-                <BottomNavigationAction label={t("PersonalProjects")} icon={<PersonIcon/>}
+                <BottomNavigationAction label={t("GameProjects")} icon={<VideoGameIcon/>}
                                         sx={{borderBottom: "1px solid"}}/>
-                <BottomNavigationAction label={t("GroupProjects")} icon={<GroupIcon/>}
+                <BottomNavigationAction label={t("WebProjects")} icon={<WebIcon/>}
                                         sx={{borderBottom: "1px solid"}}/>
             </BottomNavigation>
             <Box sx={{
@@ -245,11 +182,10 @@ export default function ProjectsPage() {
     return (
         <>
             <PageContentBoxMinHeight>
-                {privateGroupSwitch}
+                {gameWebSwitch}
                 {projectCards(switchProjectData(buttonNavValue))}
                 {videoBox}
             </PageContentBoxMinHeight>
-            {buttonNavValue === 1 ? projectCards(oldProjects) : <></>}
         </>
     );
 }

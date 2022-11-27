@@ -1,4 +1,6 @@
 {
+  "GameProjects": "Spiele Projekte",
+  "WebProjects": "Web Projekte",
   "PersonalProjects": "Private Projekte",
   "GroupProjects": "Gruppenprojekte",
   "freeTier": "Die Live-Demos werden auf Free-Tier-Hosting-Services mit Einschränkungen bereitgestellt, bitte geben Sie den Projekten 2 bis 5 Minuten zum Laden.",
@@ -25,7 +27,5 @@
   "PGdPSlides": "Java Programmierpraktikum Folien",
   "PGdPContent": "Ich habe über 600 Folien erstellt, um Erstsemesterstudenten die Grundlagen der Programmierung in Java zu vermitteln.",
   "SocialGamingTutorial": "Social Gaming Beispielimplementierung",
-  "SocialGamingTutorialContent": "Ein Beispielimplementierung, die ich für den Social Gaming Lab Course erstellt habe. Dieses Tutorial führt die Schüler in die folgenden Konzepte ein: Android Studio, eine einfache REST-API mit Spring Boot, Speichern von JSON-Daten in MongoDB, Firebase-Authentifizierung und Open Street Maps Integration.",
-  "DefendersOfEarth": "Alter AR-Multiplayer-Shooter, der mit Unity, Firebase, und Mirror erstellt wurde.",
-  "GlobalGalaxy": "Mein allererstes Spiel, das ich je erstellt habe."
+  "SocialGamingTutorialContent": "Ein Beispielimplementierung, die ich für den Social Gaming Lab Course erstellt habe. Dieses Tutorial führt die Schüler in die folgenden Konzepte ein: Android Studio, eine einfache REST-API mit Spring Boot, Speichern von JSON-Daten in MongoDB, Firebase-Authentifizierung und Open Street Maps Integration."
 }

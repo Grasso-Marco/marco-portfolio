@@ -1,4 +1,6 @@
 {
+  "GameProjects": "Game projects",
+  "WebProjects": "Web projects",
   "PersonalProjects": "Personal projects",
   "GroupProjects": "Group projects",
   "freeTier": "The live demos are deployed on free tier hosting services with limitations, please give them 2~5min to load up.",
@@ -25,7 +27,5 @@
   "PGdPSlides": "Fundamentals of Programming Tutor Slides",
   "PGdPContent": "I created over 600 slides to teach first semester students the basics of programming in Java.",
   "SocialGamingTutorial": "Social Gaming example implementation",
-  "SocialGamingTutorialContent": "An example implementation tutorial I made for the Social Gaming Lab Course. This tutorial introduces the students to the following concepts: Android Studio, a simple REST API with Spring Boot, how to save JSON data into MongoDB, Firebase Authentication, and Open Street Maps integration.",
-  "DefendersOfEarth": "Old AR multiplayer shooter made with Unity, Firebase, and Mirror",
-  "GlobalGalaxy": "My very first game I ever made."
+  "SocialGamingTutorialContent": "An example implementation tutorial I made for the Social Gaming Lab Course. This tutorial introduces the students to the following concepts: Android Studio, a simple REST API with Spring Boot, how to save JSON data into MongoDB, Firebase Authentication, and Open Street Maps integration."
 }

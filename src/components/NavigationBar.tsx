@@ -100,6 +100,7 @@ export default function NavigationBar() {
                                     <Link key={index} to={page.url}
                                           className={styles.link}>{t(page.title as string)}</Link>
                                 ))}
+                            <a href="https://www.in.tum.de/in/impressum/" className={styles.link}>{t("LegalDisclosure")}</a>
                         </Typography>
                     </Box>
                     <Box>

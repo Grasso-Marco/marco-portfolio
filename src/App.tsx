@@ -29,7 +29,7 @@ export const pages: Page[] = [
     {url: "/university", title: "University", component: <UniversityPage/>},
     {url: "/skills", title: "Skills", component: <SkillsPage/>},
     {url: "/projects", title: "Projects", component: <ProjectsPage/>},
-    {url: "/legal", title: "LegalDisclosure", component: <LegalDisclosurePage/>},
+    {url: "/legal", component: <LegalDisclosurePage/>},
     {url: "/contact", component: <ContactPage/>},
     {url: "*", component: <ErrorPage/>}
 ];
